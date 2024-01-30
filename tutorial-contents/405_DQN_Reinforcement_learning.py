@@ -100,14 +100,14 @@ dqn = DQN()
 
 print('\nCollecting experience...')
 for i_episode in range(400):
-    s = env.reset()
+    s, info = env.reset()          #(array([ 0.01663968, -0.0364228 , -0.03484314, -0.01153948], dtype=float32), {})
     ep_r = 0
     while True:
         env.render()
         a = dqn.choose_action(s)
 
         # take action
-        s_, r, done, info = env.step(a)
+        s_, r, done, info, _ = env.step(a)
 
         # modify the reward
         x, x_dot, theta, theta_dot = s_
